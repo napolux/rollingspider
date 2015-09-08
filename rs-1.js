@@ -15,7 +15,7 @@ process.stdin.on('keypress', function (ch, key) {
 
 	// Takeoff...
 	if (key && key.name == 't') {
-		console.log('Take-off and stabilization...'.green);
+		console.log('[INFO] Take-off and stabilization...'.green);
 
 		try {
 
@@ -26,7 +26,7 @@ process.stdin.on('keypress', function (ch, key) {
 
 	// Process flightplan
 	if(key && key.name == 'f') {
-		console.log('We have a plan... Let\'s fly!'.green);		
+		console.log('[INFO] We have a plan... Let\'s fly!'.green);		
 
 		try {
 
@@ -37,7 +37,7 @@ process.stdin.on('keypress', function (ch, key) {
 
 	// Emergency landing...
 	if (key && key.name == 'e') {
-		console.log('Emergency landing!'.red);
+		console.log('[INFO] Emergency landing!'.red);
 
 		try {
 
@@ -50,7 +50,7 @@ process.stdin.on('keypress', function (ch, key) {
 
 	if (key && key.name == 'l') {
 		// A normal landing...
-		console.log('Landing...'.green);
+		console.log('[INFO] Landing...'.green);
 
 		try {
 
@@ -61,7 +61,7 @@ process.stdin.on('keypress', function (ch, key) {
 
 	if (key && key.name == 'x') {
 		// Landing drone and exiting...
-		console.log('Landing...'.green);
+		console.log('[INFO] Landing...'.green);
 
 		try {
 
