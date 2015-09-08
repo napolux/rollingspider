@@ -14,30 +14,62 @@ keypress(process.stdin);
 process.stdin.on('keypress', function (ch, key) {
 
 	// Takeoff...
-	if (key.name == 't') {
+	if (key && key.name == 't') {
 		console.log('Take-off and stabilization...'.green);
+
+		try {
+
+		} catch(err) {
+			console.log('[ERROR] '.red + err.red);
+		}
 	};	
 
 	// Process flightplan
-	if(key.name == 'f') {
+	if(key && key.name == 'f') {
 		console.log('We have a plan... Let\'s fly!'.green);		
+
+		try {
+
+		} catch(err) {
+			console.log('[ERROR] '.red + err.red);
+		}
 	}
 
 	// Emergency landing...
-	if (key.name == 'e') {
+	if (key && key.name == 'e') {
 		console.log('Emergency landing!'.red);
+
+		try {
+
+		} catch(err) {
+			console.log('[ERROR] '.red + err.red);
+		}
+
 		process.exit();
 	};	
 
-	if (key.name == 'l') {
+	if (key && key.name == 'l') {
 		// A normal landing...
 		console.log('Landing...'.green);
+
+		try {
+
+		} catch(err) {
+			console.log('[ERROR] '.red + err.red);
+		}
 	}
 
-	if (key.name == 'x') {
+	if (key && key.name == 'x') {
 		// Landing drone and exiting...
 		console.log('Landing...'.green);
-		console.log('Goodbye!'.rainbow);
+
+		try {
+
+		} catch(err) {
+			console.log('[ERROR] '.red + err.red);
+		}
+
+		console.log('***** GOODBYE! *****'.rainbow);
 		process.exit();
 	}
 });
