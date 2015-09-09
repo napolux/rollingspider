@@ -31,13 +31,12 @@ process.stdin.on('keypress', function (ch, key) {
 
 	// Takeoff...
 	if (key && key.name == 't') {
-		console.log('[INFO] Take-off and stabilization...'.green);
-
 		try {
-          rs.takeOff();
-          rs.flatTrim(function() {
-          	console.log('[INFO] Rolling Spider is stable'.green);
-          });
+		  rs.calibrate(function() {
+		  	rs.takeOff(function() {
+	          	console.log('[INFO] Rolling Spider take-off'.green);
+		  	});
+		  });
    		} catch(err) {
 			console.log('[ERROR] '.red + err.red);
 		}
@@ -79,10 +78,8 @@ process.stdin.on('keypress', function (ch, key) {
 	}
 
 	if (key && key.name == 'x') {
-		// Landing drone and exiting...
-		console.log('[INFO] Landing...'.green);
-
 		try {
+			rs.land()
 			rs.disconnect();
 		} catch(err) {
 			console.log('[ERROR] '.red + err.red);
