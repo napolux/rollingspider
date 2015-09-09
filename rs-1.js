@@ -34,7 +34,7 @@ process.stdin.on('keypress', function (ch, key) {
 		try {
 		  rs.calibrate(function() {
 		  	rs.takeOff(function() {
-	          	console.log('[INFO] Rolling Spider take-off'.green);
+	          	console.log('[INFO] Rolling Spider take-off completed'.green);
 		  	});
 		  });
    		} catch(err) {
@@ -58,7 +58,9 @@ process.stdin.on('keypress', function (ch, key) {
 		console.log('[INFO] Emergency landing!'.red);
 
 		try {
-			rs.emergency();
+			rs.calibrate(function() {
+				rs.emergency();
+			});
 		} catch(err) {
 			console.log('[ERROR] '.red + err.red);
 		}
@@ -71,7 +73,9 @@ process.stdin.on('keypress', function (ch, key) {
 		console.log('[INFO] Landing...'.green);
 
 		try {
-			rs.land();
+			rs.calibrate(function() {
+				rs.land();
+			});
 		} catch(err) {
 			console.log('[ERROR] '.red + err.red);
 		}
@@ -79,8 +83,11 @@ process.stdin.on('keypress', function (ch, key) {
 
 	if (key && key.name == 'x') {
 		try {
-			rs.land()
-			rs.disconnect();
+			rs.calibrate(function() {
+				rs.land(function() {
+					rs.disconnect();
+				});
+			});
 		} catch(err) {
 			console.log('[ERROR] '.red + err.red);
 		}
