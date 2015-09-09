@@ -4,11 +4,27 @@ var keypress 	  = require('keypress');
 var RollingSpider = require('rolling-spider');
 var colors 		  = require('colors');
 
+var uuid = 'ff5af834737b41e6afd3a66260315f86';
+
 // Hello World! :D
 console.log('***** PARROT PILOT *****'.yellow);
 
 // Make `process.stdin` begin emitting "keypress" events
 keypress(process.stdin);
+
+// Connecting to drone...
+var rs = new RollingSpider({'uuid': uuid});
+
+// NEW CODE BELOW HERE
+
+rs.connect(function() {
+
+	console.log('[INFO] Connecting to: '.green + uuid.green);
+
+  	rs.setup(function() {
+  			console.log('[INFO] Connected to: '.green + uuid.green);
+  	});
+});
 
 // Listening for the "keypress" event
 process.stdin.on('keypress', function (ch, key) {
@@ -18,8 +34,11 @@ process.stdin.on('keypress', function (ch, key) {
 		console.log('[INFO] Take-off and stabilization...'.green);
 
 		try {
-
-		} catch(err) {
+          rs.takeOff();
+          rs.flatTrim(function() {
+          	console.log('[INFO] Rolling Spider is stable'.green);
+          });
+   		} catch(err) {
 			console.log('[ERROR] '.red + err.red);
 		}
 	};	
@@ -40,7 +59,7 @@ process.stdin.on('keypress', function (ch, key) {
 		console.log('[INFO] Emergency landing!'.red);
 
 		try {
-
+			rs.emergency();
 		} catch(err) {
 			console.log('[ERROR] '.red + err.red);
 		}
@@ -53,7 +72,7 @@ process.stdin.on('keypress', function (ch, key) {
 		console.log('[INFO] Landing...'.green);
 
 		try {
-
+			rs.land();
 		} catch(err) {
 			console.log('[ERROR] '.red + err.red);
 		}
@@ -64,7 +83,7 @@ process.stdin.on('keypress', function (ch, key) {
 		console.log('[INFO] Landing...'.green);
 
 		try {
-
+			rs.disconnect();
 		} catch(err) {
 			console.log('[ERROR] '.red + err.red);
 		}
