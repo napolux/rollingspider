@@ -59,7 +59,9 @@ process.stdin.on('keypress', function (ch, key) {
 
 		try {
 			rs.calibrate(function() {
-				rs.emergency();
+				rs.emergency(function() {
+					rs.disconnect();
+				});
 			});
 		} catch(err) {
 			console.log('[ERROR] '.red + err.red);
@@ -75,6 +77,22 @@ process.stdin.on('keypress', function (ch, key) {
 		try {
 			rs.calibrate(function() {
 				rs.land();
+			});
+		} catch(err) {
+			console.log('[ERROR] '.red + err.red);
+		}
+	}
+
+	if (key && key.name == 'r') {
+		// A normal landing...
+		console.log('[INFO] Rotating clockwise...'.green);
+
+		try {
+			rs.calibrate(function() {
+				rs.clockwise({
+					'speed': 50,
+					'steps': 50
+				});
 			});
 		} catch(err) {
 			console.log('[ERROR] '.red + err.red);
