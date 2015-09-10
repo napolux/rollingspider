@@ -27,7 +27,7 @@ process.stdin.setRawMode(true);
 process.stdin.resume();
 
 // call "node test.js debug" to print out debug...
-if (typeof(process.argv[2]) != 'undefined') {
+if (typeof(process.argv[2]) != 'undefined' && process.argv[2] == 'debug') {
     var d = new Drone({'logger': console.log}); 
 } else {
     var d = new Drone(); 
