@@ -1,2 +1,2 @@
 # rollingspider
-My experiments with the Parrot Rolling Spider Drone &amp; Node.js
+Experiments with Node.js and Parrot Rolling Spider Drone
