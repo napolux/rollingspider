@@ -207,7 +207,7 @@ process.stdin.on('keypress', function (ch, key) {
         } 
 
         // Exit...
-        if (key.name === 'x') {
+        if (key.name === 'm') {
             try {
                 d.disconnect();
             } catch(err) {
