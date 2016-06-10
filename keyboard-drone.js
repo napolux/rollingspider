@@ -1,5 +1,3 @@
-// uuid = 'ff5af834737b41e6afd3a66260315f86';
-
 'use strict';
 
 var keypress    = require('keypress');
@@ -8,11 +6,8 @@ var colors      = require('colors');
 
 // Change this with your drone name...
 var DRONE_NAME  = 'RS_W259332'; 
-
-
 var ACTIVE = true;
 var STEPS = 4;
-
 
 function cooldown() {
   ACTIVE = false;
@@ -26,7 +21,7 @@ keypress(process.stdin);
 process.stdin.setRawMode(true);
 process.stdin.resume();
 
-// call "node test.js debug" to print out debug...
+// call "node keyboard-drone.js debug" to print out debug...
 if (typeof(process.argv[2]) != 'undefined' && process.argv[2] == 'debug') {
     var d = new Drone({'logger': console.log}); 
 } else {
@@ -50,7 +45,7 @@ d.connect(function () {
             process.exit();
         }
 
-        // Initial ping...
+        // Initial ping and flat setup...
         d.flatTrim();
         d.startPing();
         d.flatTrim();
