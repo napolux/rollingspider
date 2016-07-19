@@ -4,8 +4,9 @@ var keypress = require('keypress');
 var Drone = require('rolling-spider');
 var colors = require('colors');
 
-// Change this with your drone name...
+// Change this with your drone name, you can get it from the Parrot app...
 var DRONE_NAME = 'RS_W259332';
+
 var ACTIVE = true;
 var STEPS = 4;
 
@@ -30,6 +31,7 @@ if (typeof(process.argv[2]) != 'undefined' && process.argv[2] == 'debug') {
     var d = new Drone();
 }
 
+// Connecting to the drone
 d.connect(function() {
     d.setup(function() {
         console.log('[INFO] Connected to:'.green, d.name.green);
@@ -52,6 +54,7 @@ d.connect(function() {
         d.startPing();
         d.flatTrim();
 
+        // Battery warning status when under 20%
         d.on('battery', function() {
             if (+d.status.battery <= 20) {
                 console.log('[WARNING] Battery low: '.red + d.status.battery.toString().red + '%'.red);
@@ -67,7 +70,6 @@ d.connect(function() {
 
 process.stdin.on('keypress', function(ch, key) {
     if (ACTIVE && key) {
-
         // Takeoff
         if (key.name === 't') {
             try {
@@ -92,7 +94,7 @@ process.stdin.on('keypress', function(ch, key) {
             }
         }
 
-        // WASD...
+        // WASD is for movement...
         if (key.name === 'w') {
             try {
                 d.forward({
