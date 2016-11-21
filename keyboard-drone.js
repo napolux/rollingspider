@@ -5,7 +5,7 @@ var Drone = require('rolling-spider');
 var colors = require('colors');
 
 // Change this with your drone name, you can get it from the Parrot app...
-var DRONE_NAME = 'RS_W259332';
+var DRONE_NAME = 'RS_1234567890';
 
 var ACTIVE = true;
 var STEPS = 4;
